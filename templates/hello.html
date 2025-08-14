@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello From Flask</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+</head>
+<body>
+    {% if person %}
+        <h1>Hello {{person}}!</h1>
+    {% else %}
+        <h1>Hello, World</h1>
+    {% endif %}
+</body>
+</html>
