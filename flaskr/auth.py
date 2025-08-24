@@ -46,7 +46,7 @@ def login():
         error = None
         user = db.execute(
             'SELECT * FROM user WHERE username = ?', (username,)
-        ).fetchnone() # fetchnone retorna apenas um resultado da busca do banco de dados. Se retornar nada, user armazenará None. (ao invés de um objeto db)
+        ).fetchone() # fetchnone retorna apenas um resultado da busca do banco de dados. Se retornar nada, user armazenará None. (ao invés de um objeto db)
 
         if user is None:
             error = 'Nome de usuário incorreto.'
