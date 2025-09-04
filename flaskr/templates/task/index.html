@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1>{% block title %}Tarefas{% endblock %}</h1>
+<a class="action" href="{{ url_for('task.create') }}">Adicionar tarefa</a>
+{% endblock %}
+
+{% block content %}
+{% for task in tasks %}
+<article class="task">
+    <header>
+        <div>
+            <h1>{{ task['title'] }}</h1>
+        </div>
+        <a class="action" href="{{ url_for('task.update', id=task['id']) }}">Editar</a>
+    </header>
+    <p class="body">{{ task['body'] }}</p>
+    <div>em {{ task['created'].strftime('%Y-%m-%d') }}</div>
+</article>
+    {% if not loop.last %}
+    <hr>
+    {% endif %}
+{% else %}
+<h1>Você ainda não registrou nenhuma tarefa!</h1>
+{% endfor %}
+{% endblock %}
