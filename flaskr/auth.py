@@ -17,9 +17,9 @@ def register():
         error = None
 
         if not username:
-            error = 'Nome do usuário é obrigatório'
+            error = 'Nome do usuario e obrigatorio'
         elif not password:
-            error = 'Senha é obrigatório'
+            error = 'Senha e obrigatorio'
         
         if error is None:
             try:
@@ -29,7 +29,7 @@ def register():
                 )
                 db.commit()
             except db.IntegrityError:
-                error = f"Usuário {username} já está registrado."
+                error = f"Usuario {username} ja esta registrado."
             else:
                 return redirect(url_for("auth.login"))
             
@@ -49,13 +49,13 @@ def login():
         ).fetchone() # fetchnone retorna apenas um resultado da busca do banco de dados. Se retornar nada, user armazenará None. (ao invés de um objeto db)
 
         if user is None:
-            error = 'Nome de usuário incorreto.'
+            error = 'Nome de usuario incorreto.'
         elif not check_password_hash(user['password'], password):
             error = 'Senha incorreta.'
         
         if error is None:
             session.clear()
-            session['user_id'] = user['id'] # armazena o id do usuário em um cookie no navegador (de forma segura) para que a informação já exista quando outras requisições forem feitas
+            session['user_id'] = user['id'] # armazena o id do usuario em um cookie no navegador (de forma segura) para que a informação já exista quando outras requisições forem feitas
             return redirect(url_for('index'))
         
         flash(error)
